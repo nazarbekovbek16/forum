@@ -1,0 +1,11 @@
+.fas {
+  cursor: pointer;
+  user-select: none;
+}
+.button:hover {
+  color: darkblue;
+}
+
+.fas .fa-thumbs-up {
+  color: darkblue;
+}

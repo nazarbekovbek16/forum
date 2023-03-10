@@ -1,0 +1,28 @@
+.comment-block{
+    margin-top: 10px;
+    
+}
+.comment{
+    height: 100px;
+    padding-top: 2px;
+
+}
+
+.content{
+    height: 150px;
+}
+.button-comm{
+   margin-left: 1px;
+    margin-top: 8px;
+}
+.cont-post img{
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.like-disl{
+    display: block;
+    float: left;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}

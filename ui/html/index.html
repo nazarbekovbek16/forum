@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+  <link rel="stylesheet" href="../style/news.css">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="../style/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../style/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../style/img/favicon-16x16.png">
+  <link rel="manifest" href="../style/img/site.webmanifest">
+  <link rel="mask-icon" href="../style/img/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title></title>
+</head>
+
+<body>
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center right-bck">
+
+        <div class="registration-right">
+          <nav class="navbar ">
+            <div class="container-fluid" style="padding-right: 0px;padding-left: 0px;">
+              <a class="navbar-brand" href="/">
+                <h1>Forum</h1>
+              </a>
+
+                <div> 
+
+                        {{if .CurrentUser}}
+
+                        <a id="a1" class="btn btn-success" href="/post" >Add news</a>
+                        <a id="a2" class="btn btn-success" href="/logout">LogOut</a> 
+                         {{else}}
+                        <a id="a3" class="btn btn-success" href="/login">LogIn </a>
+                        <a id="a4" class="btn btn-success" href="/register">SignUp</a>
+                        {{end}}
+                </div>
+        
+
+
+            </div>
+          </nav>
+          <hr>
+
+    <ul class="nav justify-content-center">
+    
+      <li class="nav-item">
+        <a href="/?type=business" style="text-decoration: none"> <button class="btn btn-outline-secondary cat" name="category" value="business">Business</button> </a>
+      </li>
+      <li class="nav-item">
+        <a href="/?type=entertainment" style="text-decoration: none"> <button class="btn btn-outline-success cat" name="category" value="entertainment">Entertainment</button> </a>
+      </li>
+      <li class="nav-item">
+        <a href="/?type=health" style="text-decoration: none"> <button class="btn btn-outline-danger cat" name="category" value="health">Health</button> </a>
+      </li>
+      <li class="nav-item">
+        <a href="/?type=science" style="text-decoration: none"> <button class="btn btn-outline-warning cat" name="category" value="science">Science</button> </a>
+      </li>
+      <li class="nav-item">
+        <a href="/?type=sports" style="text-decoration: none"> <button class="btn btn-outline-info cat" name="category" value="sports">Sports</button> </a>
+      </li>
+      <li class="nav-item">
+        <a href="/?type=technology" style="text-decoration: none"> <button class="btn btn-outline-dark cat" name="category" value="technology">Technology</button> </a>
+      </li>
+      {{if .CurrentUser}}
+      <li class="nav-item">
+        <a id="a5" href="/?type=mynews" style="text-decoration: none"> <button class="btn btn-outline-info cat" >My Posts</button> </a>
+      </li>
+      <li class="nav-item">
+        <a id="a5" href="/?type=liked" style="text-decoration: none"> <button class="btn btn-outline-secondary cat" >Liked</button> </a>
+      </li>
+      {{end}}
+    </ul>
+
+    {{range .Posts}}
+      <div class="event-list">
+        <div class="card flex-row"><img class="card-img-left img-fluid" src="{{.Image}}" />
+          <div class="card-body">
+            <h4 class="card-title h5 h4-sm">
+              <span style="color:rgb(23, 44, 231); font-size: 19px;"> {{.Title}} </span>
+              <i class="fas fa-caret-right" aria-hidden="true">
+              </i><span> </span>
+              <i class="fas fa-caret-right" aria-hidden="true">
+              </i><span></span>
+            </h4>
+            <p class="card-text">{{.Content}} </p>
+            <span> </span>
+            <a href="/read/?id={{.ID}}">Read more</a>
+          </div>
+        </div>
+      </div>
+      {{end}}
+   
+    
+    </div>
+</div>
+</div>
+
+
+<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+</body>
+
+
+</html>
