@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="../static/img/chat.ico" />
+
+        <link rel="stylesheet" href="../static/css/default.css" />
+        <title>Error | Forum</title>
+    </head>
+    <body>
+        <header>
+            <h1 class="logo"><a href="/">Home</a></h1>
+        </header>
+
+        <div class="container">
+            <h2>{{.Status}}</h2>
+            <h3>{{.Message}}</h3>
+            <h3>{{.ErrText}}</h3>
+        </div>
+    </body>
+</html>

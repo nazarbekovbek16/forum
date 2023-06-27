@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="../static/img/chat.ico" />
+        <link rel="stylesheet" href="../static/css/default.css" />
+        <link rel="stylesheet" href="../static/css/create_post.css" />
+        <title>Create Post | Forum</title>
+    </head>
+    <body>
+        <header>
+            <h1 class="logo"><a href="/">Home</a></h1>
+        </header>
+        <div class="container">
+            <form action="/post/create" method="post" autocomplete="off">
+                <h2 class="post-create-title">Create Post</h2>
+                <div>
+                    <!-- <label for="title" class="title">Title</label> -->
+                    <input
+                        id="title"
+                        class="title"
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        maxlength="100"
+                        title="Post title must not exceed 100 characters"
+                        required
+                    />
+                </div>
+                <div>
+                    <!-- <label for="content">Content</label> -->
+                    <textarea
+                        name="content"
+                        class="content"
+                        id="content"
+                        placeholder="Content..."
+                        maxlength="1500"
+                        title="Post content must not exceed 1500 characters"
+                        required
+                    ></textarea>
+                </div>
+
+                <label class="category-label" for="category">Categories</label>
+                <div>
+                    <select data-placeholder="Choose category" name="categories" class="categories" multiple required>
+                        <option value="Alem" selected>Alem</option>
+                        <option value="Study">Study</option>
+                        <option value="Teamalem">Teamalem</option>
+                        <option value="Linkedin">Linkedin</option>
+                        <option value="Offtop">Offtop</option>
+                    </select>
+                    <p class="advice-label">
+                        Hold down the <b><i>CTRL</i></b> button on Windows or <b><i>command</i></b> button on Mac to select multiple options
+                    </p>
+                    <button class="create-btn">Create Post</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

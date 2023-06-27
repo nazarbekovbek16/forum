@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="../static/img/chat.ico" />
+
+        <link rel="stylesheet" href="../static/css/default.css" />
+        <title>Main | Forum</title>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-wrapper">
+                <h1 class="logo"><a href="/">Forum</a></h1>
+                {{ if .User.Username }}
+                <div class="user">
+                    <a href="/profile/{{ .User.Username }}?posts=created" class="header-btn user-button">Profile</a>
+                    <a href="/post/create" class="header-btn user-button">Create Post</a>
+                    <a href="/auth/logout" class="header-btn user-button">Logout</a>
+                </div>
+                {{ else }}
+                <div class="auth">
+                    <a href="/auth/signin" class="header-btn sign-in">Sign-In</a>
+                    <a href="/auth/signup" class="header-btn sign-up">Sign-Up</a>
+                </div>
+                {{ end }}
+            </div>
+        </header>
+        <!-- <div class="header-underline"></div> -->
+        <div class="container">
+            <main>
+                <div class="main-wrapper">
+                    {{ if .User.Username }}
+                    <div class="filter">
+                        <a href="/?time=new">Newest Posts</a>
+                        <a href="/?time=old">Old Posts</a>
+                        <a href="/?vote=like">Most Liked</a>
+                        <a href="/?vote=dislike">Most Disliked</a>
+                        <a href="/?clean=true">No filter</a>
+                    </div>
+                    {{ end }} {{ range .Posts }}
+                    <div class="post">
+                        <div class="post-author">
+                            <p>From: <a href="/profile/{{ .Author }}?posts=created">{{ .Author }}</a></p>
+                        </div>
+                        <div class="post-title">
+                            <p>Title: {{ .Title }}</p>
+                        </div>
+                        <div class="post-content"><pre>{{ .Content }}</pre></div>
+                        <div class="post-footer">
+                            {{ range .Category }}
+                            <a href="/?category={{ . }}" class="tag">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                        <div class="post-info-btn-parent"><a href="/post/{{ .ID }}" class="post-info-btn">See more</a></div>
+                    </div>
+                    {{ end }}
+                </div>
+            </main>
+            <footer>
+                <div class="footer-wrapper">
+                    <div class="footer-header"></div>
+                    <div class="footer-body"></div>
+                    <div class="footer-footer"></div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

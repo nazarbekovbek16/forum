@@ -1,0 +1,14 @@
+{
+    "http": {
+        "port": "9090",
+        "readTimeout": 10,
+        "writeTimeout": 10,
+        "oneMB": 1048576
+    },
+
+    "db": {
+        "driver": "sqlite3",
+        "dbname": "forumDB.db",
+        "timeout": 5
+    }
+}

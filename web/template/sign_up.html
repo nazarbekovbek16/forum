@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="../static/img/chat.ico" />
+
+        <link rel="stylesheet" href="../static/css/default.css" />
+        <link rel="stylesheet" href="../static/css/sign_up.css" />
+
+        <title>Sign Up | Forum</title>
+    </head>
+    <body>
+        <header>
+            <h1 class="logo"><a href="/">Home</a></h1>
+        </header>
+        <div class="container">
+            <form action="/auth/signup" method="post" autocomplete="off">
+                <h2 class="sign-up-title">Sign Up</h2>
+                <div>
+                    <input
+                        id="Email"
+                        type="email"
+                        class="email sign-up-field"
+                        name="email"
+                        required
+                        placeholder="Email"
+                        maxlength="80"
+                        minlength="2"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    />
+                </div>
+                <div>
+                    <input
+                        id="Username"
+                        type="text"
+                        class="username sign-up-field"
+                        name="username"
+                        required
+                        pattern="[\x21-\x7e]{1,36}"
+                        maxlength="36"
+                        minlength="1"
+                        placeholder="Username"
+                        title="Must contain 1-36 characters"
+                    />
+                </div>
+                <div>
+                    <input
+                        id="Password"
+                        type="password"
+                        class="password sign-up-field"
+                        name="password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}"
+                        placeholder="Password"
+                        maxlength="32"
+                        minlength="8"
+                        title="Must contain at least one number and one uppercase and lowercase letter, and 8-32 characters"
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        id="ConfirmPassword"
+                        type="password"
+                        class="password sign-up-field"
+                        name="confirm-password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}"
+                        placeholder="Confirm Password"
+                        maxlength="32"
+                        minlength="8"
+                        title="Must contain at least one number and one uppercase and lowercase letter, and 8-32 characters"
+                        required
+                    />
+                </div>
+                <button class="sign-up-btn">Create Account</button>
+            </form>
+            <p class="sign-in-label">Already have an account?</p>
+            <a href="/auth/signin" class="sign-in-btn">Sign In</a>
+        </div>
+    </body>
+</html>

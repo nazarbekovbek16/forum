@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="../static/img/chat.ico" />
+
+        <link rel="stylesheet" href="../static/css/default.css" />
+        <link rel="stylesheet" href="../static/css/post.css" />
+
+        <title>Post | Forum</title>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-wrapper">
+                <h1><a href="/">Forum</a></h1>
+                {{ if .User.Username }}
+                <div class="user">
+                    <a href="/profile/{{ .User.Username }}?posts=created" class="header-btn">Profile</a>
+                    <a href="/post/create" class="header-btn">Create Post</a>
+                    <a href="/auth/logout" class="header-btn">Log-Out</a>
+                </div>
+                {{ else }}
+                <div class="auth">
+                    <a href="/auth/signin" class="header-btn sign-in">Sign-In</a>
+                    <a href="/auth/signup" class="header-btn sign-up">Sign-Up</a>
+                </div>
+                {{ end }}
+            </div>
+        </header>
+        <div class="container">
+            <main>
+                <div class="main-wrapper">
+                    <div class="post-main">
+                        <div class="post-body">
+                            <div class="post-author">
+                                <h2>Author: <a href="/profile/{{ .Post.Author }}?posts=created">{{ .Post.Author }}</a></h2>
+                            </div>
+                            <div class="post-title">
+                                <h2>{{ .Post.Title }}</h2>
+                            </div>
+                            <div class="post-content">{{ .Post.Content }}</div>
+                        </div>
+                        <div class="post-info">
+                            <div class="reaction">
+                                <div class="react">
+                                    <p class="tooltip">{{ .Post.Likes }} {{ if .PostLikes }} {{ end }}</p>
+                                    <form class="react-post" action="/post/like/{{ .Post.ID }}" method="post">
+                                        <button class="vote" id="like" {{ if not .User.Username }} disabled {{ end }}></button>
+                                    </form>
+                                </div>
+                                <div class="react">
+                                    <p class="tooltip">{{ .Post.Dislikes }} {{ if .PostDislikes }} {{ end }}</p>
+                                    <form class="react-post" action="/post/dislike/{{ .Post.ID }}" method="post">
+                                        <button class="vote vote-dislike" id="dislike" {{ if not .User.Username }} disabled {{ end }}></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tags">
+                                {{ range $tag := .Post.Category }}
+                                <a href="/?category={{ $tag }}" class="tag">{{ $tag }}</a>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="comments-block">Commentaries</p>
+                    {{ $user := .User.Username }}
+                    <div class="comments">
+                        <div class="all-comments">
+                            {{ range .Commentaries }}
+                            <div class="one-comment">
+                                <h3>From: {{ .Author }}</h3>
+                                <div class="comment-text"><pre>{{ .Content }}</pre></div>
+                                <div class="comment-reaction">
+                                    <div class="like-parent">
+                                        <p>{{ .Likes }}</p>
+                                        <form class="reactComment" action="/comment/like/{{ .ID }}" method="post">
+                                            <button class="vote" {{ if not $user }} disabled {{ end }}></button>
+                                        </form>
+                                    </div>
+                                    <div class="dislike-parent">
+                                        <p>{{ .Dislikes }}</p>
+                                        <form class="reactComment" action="/comment/dislike/{{ .ID }}" method="post">
+                                            <button class="vote vote-dislike" {{ if not $user }} disabled {{ end }}></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ else }}
+                            <h3 class="no-comment">No commentaries yet</h3>
+                            {{ end }}
+                        </div>
+                        {{ if .User.Username }}
+                        <form action="/post/{{ .Post.ID }}" method="post" class="send-comment">
+                            <div>
+                                <p class="comment-leave">Leave Commentary</p>
+
+                                <textarea
+                                    id="Comment"
+                                    name="comment"
+                                    class="comment-content"
+                                    maxlength="700"
+                                    minlength="1"
+                                    title="Commentary must not exceed 700 characters"
+                                    required
+                                ></textarea>
+                            </div>
+                            <button class="comment-send_btn">Send</button>
+                        </form>
+                        {{ end }}
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <div class="footer-wrapper">
+                    <div class="footer-header"></div>
+                    <div class="footer-body"></div>
+                    <div class="footer-footer"></div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

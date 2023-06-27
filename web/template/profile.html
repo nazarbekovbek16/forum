@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="../static/img/chat.ico" />
+
+        <link rel="stylesheet" href="../static/css/default.css" />
+        <link rel="stylesheet" href="../static/css/profile.css" />
+        <title>Profile | Forum</title>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-wrapper">
+                <h1 class="logo"><a href="/">Forum</a></h1>
+                {{ if .User.Username }}
+                <div class="user">
+                    {{ if eq .User.Username .ProfileUser.Username }}
+                    <a href="/profile/{{ .User.Username }}?posts=created" class="header-btn user-button">Profile</a>
+                    <a href="/post/create" class="header-btn user-button">Create Post</a>
+                    <a href="/auth/logout" class="header-btn user-button">Log-Out</a>
+                    {{ end }}
+                </div>
+                {{ else }}
+                <div class="auth">
+                    <a href="/auth/signin" class="header-btn sign-in">Sign-In</a>
+                    <a href="/auth/signup" class="header-btn sign-up">Sign-Up</a>
+                </div>
+                {{ end }}
+            </div>
+        </header>
+        <div class="container">
+            <main>
+                <div class="main-wrapper">
+                    <div class="main-card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>{{ .ProfileUser.Username }}</h2>
+                            </div>
+                            <div class="card-about">
+                                <h3>{{ .ProfileUser.Email }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-body">
+                        <div class="filter">
+                            {{ if eq .User.Username .ProfileUser.Username }}
+                            <a href="/profile/{{ .ProfileUser.Username }}?posts=liked">Liked Posts</a>
+                            <a href="/profile/{{ .ProfileUser.Username }}?posts=disliked">Disliked Posts</a>
+                            <a href="/profile/{{ .ProfileUser.Username }}?posts=commented">Commented Posts</a>
+                            <a href="/profile/{{ .ProfileUser.Username }}?posts=created">No filter</a>
+                            {{end}}
+                        </div>
+                        {{ range .Posts }}
+                        <div class="post">
+                            <div class="post-author">
+                                <p>From: <span style="font-size: 20px; font-weight: 600">{{ .Author }}</span></p>
+                            </div>
+
+                            <div class="post-title">
+                                <p>Title: {{ .Title }}</p>
+                            </div>
+                            <div class="post-content">{{ .Content }}</div>
+                            <div class="post-footer">
+                                {{ range .Category }}
+                                <a href="/?category={{ . }}" class="tag">{{ . }}</a>
+                                {{ end }}
+                            </div>
+                            <div class="post-info-btn-parent"><a href="/post/{{ .ID }}" class="post-info-btn">More</a></div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <div class="footer-wrapper">
+                    <div class="footer-header"></div>
+                    <div class="footer-body"></div>
+                    <div class="footer-footer"></div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

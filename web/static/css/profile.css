@@ -1,0 +1,13 @@
+.card-header h2,
+.card-about h3 {
+    text-align: center;
+}
+
+.card-header h2 {
+    font-size: 30px;
+}
+
+.card-about h3 {
+    font-size: 23px;
+    padding-bottom: 20px;
+}

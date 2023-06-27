@@ -1,0 +1,87 @@
+.post-create-title {
+    font-size: 30px;
+}
+
+
+.title {
+    font-size: 25px;
+    /* font-weight: 600; */
+    border-radius: 5px;
+    width: 70%;
+    padding: 10px;
+    border: none;
+    color: #fff;
+    background-color: #374352;
+}
+
+.title:focus {
+    outline: none;
+}
+
+.content {
+    resize: none;
+    min-height: 150px;
+    width: 98%;
+    font-size: 20px;
+    padding: 10px;
+    margin: 20px 0;
+    border: none;
+    color: #fff;
+    background-color: #374352;
+    border-radius: 5px;
+}
+
+.content:focus {
+    outline: none;
+}
+
+.category-label {
+    font-size: 20px;
+}
+
+.categories {
+    /* padding: 20px; */
+    font-size: 20px;
+    background-color: #374352;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.categories option {
+    padding: 10px 10px;
+}
+
+.categories option:focus {
+    /* color: blue; */
+    border: none;
+}
+
+.advice-label {
+    font-size: 17px;
+    opacity: .8;
+}
+
+.create-btn {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #1f2833;
+    color: #fff;
+    border: 1px solid #66fcf1;
+
+
+    background-image: linear-gradient(90deg, 
+    #1f2833 0%,
+    #1f2833 50%,
+    #66fcf1 50%,
+    #66fcf1 100%);
+    background-size: 200%;
+    transition: background-position .2s cubic-bezier(.47, .1, 1, .63), color .2s linear;
+    transition-delay: 0.0s, 0.15s;
+}
+
+.create-btn:hover {
+    color: #1f2833;
+    cursor: pointer;
+    background-position: -100% 100%;
+}
